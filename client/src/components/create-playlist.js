@@ -1,4 +1,5 @@
 import React from 'react';
+import getCoordinates from '../logic/get-coordinates';
 
 export default class CreatePlaylist extends React.Component {
     constructor(props) {
@@ -26,6 +27,11 @@ export default class CreatePlaylist extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
+        getCoordinates(this.state.start, this.state.destination)
+            .then(res => {
+                console.log(res.data.routes[0].legs[0].steps)
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
