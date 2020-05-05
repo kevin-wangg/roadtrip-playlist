@@ -19,18 +19,9 @@ connection.once('open', () => {
     console.log('Mongoose database connection established sucessfully!');
 })
 
-// Testing
-let Playlist = require('./models/playlist.model');
-app.get('/', (req, res) => { 
-    const playlistName = 'Summer';
-    const startCity = 'Toronto';
-    const destination = 'Orlando';
-    const songs = [{title: 'hello', artist: 'adele', location: 'london', preview: 'hello.mp3'}]
-    const newPlaylist = new Playlist({playlistName, startCity, destination, songs});
-    newPlaylist.save()
-        .then(() => res.json('Playlist added!'))
-        .catch(err => res.status.bind(400).json('Error' + err));
-});
+const playlistsRouter = require('./routes/playlists');
+
+app.use('/playlists', playlistsRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

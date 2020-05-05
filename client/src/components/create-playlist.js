@@ -1,4 +1,5 @@
 import React from 'react';
+import getRoute from '../logic/get-route';
 import getCoordinates from '../logic/get-coordinates';
 
 export default class CreatePlaylist extends React.Component {
@@ -27,9 +28,10 @@ export default class CreatePlaylist extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        getCoordinates(this.state.start, this.state.destination)
+        getRoute(this.state.start, this.state.destination)
             .then(res => {
-                console.log(res.data.routes[0].legs[0].steps)
+                let coordinates = getCoordinates(res.data.routes[0].legs[0].steps);
+                console.log(coordinates);
             })
             .catch(err => console.log(err));
     }
