@@ -48,4 +48,10 @@ router.route('/add').post((req, res) => {
 
 })
 
+router.route('/:id').get((req, res) => {
+    Playlist.findById(req.params.id)
+        .then(playlist => res.json(playlist))
+        .catch(err => res.status(400).json('Error: ' + err))
+});
+
 module.exports = router
