@@ -21,7 +21,7 @@ connection.once('open', () => {
 
 const playlistsRouter = require('./routes/playlists');
 
-//app.use('/playlists', playlistsRouter);
+app.use('/playlists', playlistsRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

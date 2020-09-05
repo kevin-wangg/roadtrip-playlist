@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const songSchema = require('./song.model');
+const songSchema = require('./song.model')
 
 const artistSchema = new Schema({
     name: {type: String, required: true},
@@ -15,15 +15,5 @@ const artistSchema = new Schema({
     timestamps: true
 });
 
-const playlistSchema = new Schema({
-    playlistName: { type: String, required: true },
-    startCity: { type: String, required: true },
-    destination: { type: String, required: true},
-    songs: [songSchema],
-    artists: [artistSchema],
-}, {
-    timestamps: true
-});
-
-const Playlist = mongoose.model('Playlist', playlistSchema);
-module.exports = Playlist;
+const Artist = mongoose.model('Artist', artistSchema);
+module.exports = Artist;
